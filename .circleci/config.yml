@@ -13,7 +13,7 @@ jobs:
       - python/save-cache
       - chmod +x manage.py
       - run:
-          command: ./manage.py test
+          command: pipenv run python manage.py test
           name: Test
 
 workflows:
