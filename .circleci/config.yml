@@ -135,8 +135,8 @@ workflows:
           repo: eks_orb_demo_app
           dockerfile: ~/project/demo_app/Dockerfile
           path: ~/project/demo_app
-          tag: ${CIRCLE_SHA1}
-          create-repo: true
+#           tag: ${CIRCLE_SHA1}
+#           create-repo: true
       - aws-eks/create-cluster:
           cluster-name: eks-orb-demo-app-deployment
           aws-region: $AWS_DEFAULT_REGION
@@ -146,7 +146,7 @@ workflows:
           cluster-name: eks-orb-demo-app-deployment
           aws-region: $AWS_DEFAULT_REGION
           docker-image-name: "${AWS_ECR_URL}/eks_orb_demo_app"
-          version-info: "${CIRCLE_SHA1}"
+#           version-info: "${CIRCLE_SHA1}"
           requires:
             - aws-eks/create-cluster
       - test-application:
