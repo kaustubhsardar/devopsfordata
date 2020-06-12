@@ -136,7 +136,6 @@ workflows:
           dockerfile: ~/project/demo_app/Dockerfile
           path: ~/project/demo_app
           tag: ${CIRCLE_SHA1}
-          # Uncomment if the repository does not yet exist
           create-repo: true
       - aws-eks/create-cluster:
           cluster-name: eks-orb-demo-app-deployment
