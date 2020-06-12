@@ -146,7 +146,7 @@ workflows:
           cluster-name: eks-orb-demo-app-deployment
           aws-region: $AWS_DEFAULT_REGION
           docker-image-name: "${AWS_ECR_URL}/eks_orb_demo_app"
-#           version-info: "${CIRCLE_SHA1}"
+          version-info: "${CIRCLE_SHA1}"
           requires:
             - aws-eks/create-cluster
       - test-application:
