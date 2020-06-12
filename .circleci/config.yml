@@ -1,22 +1,11 @@
 version: 2.1
 
 orbs:
-  python: circleci/python@0.2.1
   aws-eks: circleci/aws-eks@0.2.0
   aws-ecr: circleci/aws-ecr@3.1.0
   kubernetes: circleci/kubernetes@0.3.0
 
 jobs:
-  build-and-test:
-    executor: python/default
-    steps:
-      - checkout
-      - python/load-cache
-      - python/install-deps
-      - python/save-cache
-      - run:
-          command: pipenv run python manage.py test
-          name: Test
   deploy-application:
     executor: aws-eks/python3
     parameters:
@@ -127,16 +116,16 @@ jobs:
 workflows:
   deployment:
     jobs:
-      - build-and-test
       - aws-ecr/build_and_push_image:
           name: build-and-push-image
-          account-url: $AWS_ECR_URL
-          region: $AWS_DEFAULT_REGION
+          account-url: AWS_ECR_URL
+          region: AWS_DEFAULT_REGION
           repo: eks_orb_demo_app
           dockerfile: ~/project/demo_app/Dockerfile
           path: ~/project/demo_app
-#           tag: ${CIRCLE_SHA1}
-#           create-repo: true
+          tag: ${CIRCLE_SHA1}
+          # Uncomment if the repository does not yet exist
+          # create-repo: true
       - aws-eks/create-cluster:
           cluster-name: eks-orb-demo-app-deployment
           aws-region: $AWS_DEFAULT_REGION
@@ -145,7 +134,7 @@ workflows:
       - deploy-application:
           cluster-name: eks-orb-demo-app-deployment
           aws-region: $AWS_DEFAULT_REGION
-          docker-image-name: "${AWS_ECR_URL}/eks_orb_demo_app"
+          docker-image-name: "${AWS_ECR_URL}/eks_orb_demo_app:${CIRCLE_SHA1}"
           version-info: "${CIRCLE_SHA1}"
           requires:
             - aws-eks/create-cluster
