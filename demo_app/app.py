@@ -24,7 +24,7 @@ def test_db():
     db.session.commit()
     user = User.query.first()
     if not user:
-        u = User(name='Mudasir', surname='Younas')
+        u = User(name='Kaustubh', surname='Sardar')
         db.session.add(u)
         db.session.commit()
     user = User.query.first()
