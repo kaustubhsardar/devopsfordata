@@ -16,7 +16,7 @@ class User(db.Model):
 
 @app.route('/test')
 def test():
-    return 'Hello World! I am from docker!'
+    return 'running tests...'
 
 @app.route('/test_db')
 def test_db():
