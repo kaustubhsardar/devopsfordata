@@ -15,7 +15,7 @@ jobs:
       - python/install-deps
       - python/save-cache
       - run:
-          command: pipenv run python manage.py test
+          command: pipenv run python demo_app/app.py
           name: Test
   deploy-application:
     executor: aws-eks/python3
