@@ -29,3 +29,6 @@ def test_db():
         db.session.commit()
     user = User.query.first()
     return "User '{} {}' is from database".format(user.name, user.surname)
+
+test()
+test_db()
