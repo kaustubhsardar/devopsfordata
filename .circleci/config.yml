@@ -21,7 +21,7 @@ jobs:
           command: python manage.py
           name: Test
           
-  deploy-application:
+ deploy-application:
     executor: aws-eks/python3
     parameters:
       cluster-name:
@@ -132,8 +132,6 @@ workflows:
   dev:
     jobs:
       - build-and-test
- 
-      
   QA:
     jobs:
       - aws-ecr/build_and_push_image:
