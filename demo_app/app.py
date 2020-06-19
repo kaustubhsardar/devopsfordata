@@ -1,12 +1,18 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
+# app = Flask(__name__)
 
-app.config.from_pyfile('config.cfg')
+
 
 db = SQLAlchemy()
-db.init_app(app)
+# db.init_app(app)
+
+def create_app():
+    app = Flask(__name__)
+    app.config.from_pyfile('config.cfg')
+    db.init_app(app)
+    return app
 
 class User(db.Model):
     __tablename__ = 'users'
