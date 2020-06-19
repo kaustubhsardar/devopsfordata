@@ -128,8 +128,7 @@ workflows:
   dev:
     jobs:
       - build-and-test
-  QA:
-    jobs:
+ 
       
   deployment:
     jobs:
