@@ -5,4 +5,4 @@ The solution is to include your database in your source control and CI/CD pipeli
 
 
 
-![Alt text](img.jpg?raw=true "Title")
+![Alt text](pipeline.PNG?raw=true "Title")
