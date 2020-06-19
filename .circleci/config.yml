@@ -1,11 +1,22 @@
 version: 2.1
 
 orbs:
+  python: circleci/python@0.2.1
   aws-eks: circleci/aws-eks@0.2.0
   aws-ecr: circleci/aws-ecr@3.1.0
   kubernetes: circleci/kubernetes@0.3.0
 
 jobs:
+  build-and-test:
+    executor: python/default
+    steps:
+      - checkout
+      - python/load-cache
+      - python/install-deps
+      - python/save-cache
+      - run:
+          command: pipenv run python manage.py test
+          name: Test
   deploy-application:
     executor: aws-eks/python3
     parameters:
@@ -114,6 +125,12 @@ jobs:
           command: |
             kubectl get pods
 workflows:
+  dev:
+    jobs:
+      - build-and-test
+  QA:
+    jobs:
+      
   deployment:
     jobs:
       - aws-ecr/build_and_push_image:
