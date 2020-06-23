@@ -1,7 +1,7 @@
 # build stage
 FROM golang:alpine AS build-env
 ADD src /src
-RUN cd /src && go build -o demo-app main.go
+RUN cd /src && go build -o demo-app main.py
 
 # final stage
 FROM alpine
