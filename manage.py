@@ -8,7 +8,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] ='postgres://kaustubh:12345@localhost:3308
 
 db = SQLAlchemy(app)
 sa_url='postgres://kaustubh:12345@localhost:3308/demo_db'
-db.create_engine(sa_url)
+db.create_engine(sa_url,{})
 migrate = Migrate(app, db)
 
 manager = Manager(app)
