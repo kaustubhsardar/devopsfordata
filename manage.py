@@ -4,7 +4,7 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'localhost:5432/mydb'
+app.config['SQLALCHEMY_DATABASE_URI'] ='postgres://kaustubh:12345@localhost:3308/demo_db'
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
