@@ -20,6 +20,15 @@ jobs:
       - run:
           command: python manage.py db init
           name:  db initialization Test
+      - run:
+          command: python manage.py db migrate
+          name:  db migrate configuration
+      - run:
+          command: python manage.py db upgrade
+          name:  db upgrade
+      - run:
+          command: python manage.py db downgrade
+          name:  db downgrade
           
   deploy-application:
     executor: aws-eks/python3
