@@ -18,8 +18,8 @@ jobs:
           command: pip install flask
           name: Flask
       - run:
-          command: python manage.py
-          name: Test
+          command: python manage.py db init
+          name:  db initialization Test
           
   deploy-application:
     executor: aws-eks/python3
